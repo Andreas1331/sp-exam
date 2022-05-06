@@ -5,39 +5,59 @@
 #ifndef PROJECT_TICKER_HPP
 #define PROJECT_TICKER_HPP
 
-/** A custom class to contain all information related to a specific ticker e.g name, trades.
- * The class also implements the visitor pattern to allow for JSON parsing */
-class ticker
-{ /** public access is just for easy structured initialization in tests */
-    bool b;
-    int x;
-    double y;
-    std::string z;
-    std::vector<int> w;
-    /** visitor support with read-only access, e.g. for writing-out */
-    template <typename Visitor>
-    void accept_reader(Visitor&& visit) const
-    {
-        visit("b", b);
-        visit("x", x);
-        visit("y", y);
-        visit("z", z);
-        visit("w", w);
-    }
+#include <string>
+#include <vector>
+
+struct trade_stamp {
+    int price;
+    int amount;
+    std::string buyer;
+    std::string seller;
+    int seq;
+    int code;
+    //trades [{time, price, amount, buyer, seller, seq, code}]
+
     /** visitor support with full access, e.g. for reading-in */
     template <typename Visitor>
     void accept_writer(Visitor&& visit)
     {
-        visit("b", b);
-        visit("x", x);
-        visit("y", y);
-        visit("z", z);
-        visit("w", w);
+        visit("price", price);
+        visit("amount", amount);
+        visit("buyer", buyer);
+        visit("seller", seller);
+        visit("seq", seq);
+        visit("code", code);
     }
-    /** equality operator to support testing */
-    friend bool operator==(const aggregate_t& a1, const aggregate_t& a2)
+};
+
+/** A custom class to contain all information related to a specific ticker e.g name, trades.
+ * The class also implements the visitor pattern to allow for JSON parsing */
+class ticker
+{
+public:
+    std::string name;
+    std::string url;
+    std::string tag;
+    std::string isin;
+    std::string market;
+    std::string sector;
+    std::string segment;
+    int shares;
+    std::vector<trade_stamp> trades;
+
+    /** visitor support with full access, e.g. for reading-in */
+    template <typename Visitor>
+    void accept_writer(Visitor&& visit)
     {
-        return (a1.b == a2.b) && (a1.x == a2.x) && (a1.y == a2.y) && (a1.z == a2.z) && (a1.w == a2.w);
+        visit("tag", tag);
+        visit("isin", isin);
+        visit("shares", shares);
+        visit("name", name);
+        visit("url", url);
+        visit("market", market);
+        visit("sector", sector);
+        visit("segment", segment);
+        visit("trades", trades);
     }
 };
 

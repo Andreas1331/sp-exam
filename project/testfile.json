@@ -5,5 +5,12 @@
   "url":"https://www.carlsberggroup.com/",
   "market":"Nasdaq Copenhagen",
   "sector":"Food, Beverage and Tobacco",
-  "segment":"Large"
+  "segment":"Large",
+  "trades":[
+    { "price":527,
+      "amount":35,
+      "buyer":"DDB",
+      "seller":"NDA",
+      "seq":1,
+      "code":0}]
 }
