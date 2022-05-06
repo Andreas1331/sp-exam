@@ -150,8 +150,9 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
         is.setf(flags);  // restore the old flags
     } else if constexpr (is_number_v<T>)
         is >> json.data;
-    else if constexpr (is_string_v<T>)
+    else if constexpr (is_string_v<T>){
         is >> std::quoted(json.data);
+    }
     else if constexpr (is_container_v<T>) {
         // here support only STD containers, as arrays cannot change size
         // alternatively one may implement filling of the pre-allocated container
