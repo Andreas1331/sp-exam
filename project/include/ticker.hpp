@@ -10,12 +10,8 @@
 
 struct trade_stamp {
     std::tm time;
-    int price;
-    int amount;
-    std::string buyer;
-    std::string seller;
-    int seq;
-    int code;
+    int price, amount, seq, code;
+    std::string buyer, seller;
 
     /** visitor support with full access, e.g. for reading-in */
     template <typename Visitor>
@@ -36,13 +32,7 @@ struct trade_stamp {
 class ticker
 {
 public:
-    std::string name;
-    std::string url;
-    std::string tag;
-    std::string isin;
-    std::string market;
-    std::string sector;
-    std::string segment;
+    std::string name, url, tag, isin, market, sector, segment;
     int shares;
     std::vector<trade_stamp> trades;
 
