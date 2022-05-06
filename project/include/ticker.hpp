@@ -9,18 +9,19 @@
 #include <vector>
 
 struct trade_stamp {
+    std::tm time;
     int price;
     int amount;
     std::string buyer;
     std::string seller;
     int seq;
     int code;
-    //trades [{time, price, amount, buyer, seller, seq, code}]
 
     /** visitor support with full access, e.g. for reading-in */
     template <typename Visitor>
     void accept_writer(Visitor&& visit)
     {
+        visit("time", time);
         visit("price", price);
         visit("amount", amount);
         visit("buyer", buyer);

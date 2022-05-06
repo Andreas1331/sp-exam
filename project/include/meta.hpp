@@ -12,6 +12,9 @@ template <typename T>
 constexpr auto is_bool_v = std::is_same_v<bool, std::remove_cv_t<std::remove_reference_t<T>>>;
 
 template <typename T>
+constexpr auto is_tm_v = std::is_same_v<std::tm, std::remove_cv_t<std::remove_reference_t<T>>>;
+
+template <typename T>
 constexpr auto is_number_v = std::is_arithmetic_v<std::remove_cv_t<std::remove_reference_t<T>>> && !is_bool_v<T>;
 
 template <typename T>

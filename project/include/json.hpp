@@ -153,6 +153,14 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
     else if constexpr (is_string_v<T>){
         is >> std::quoted(json.data);
     }
+    else if constexpr(is_tm_v<T>){
+        // Just create a shared const variable for everyone containing the format (other formats not supported)
+        static const std::string dateTimeFormat{ "%Y-%m-%dT%H:%M:%SZ" };
+        std::string t {};
+        is >> std::quoted(t);
+        std::istringstream ss{ t };
+        ss >> std::get_time(&json.data, dateTimeFormat.c_str());
+    }
     else if constexpr (is_container_v<T>) {
         // here support only STD containers, as arrays cannot change size
         // alternatively one may implement filling of the pre-allocated container
@@ -183,7 +191,8 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
         expect(is, '{');
         json.data.accept_writer(json_writer_t{is});
         expect(is, '}');
-    } else {
+    }
+    else {
         TD<T> unknown;
     }
     return is;
