@@ -7,8 +7,8 @@
 
 class candlestick{
 public:
-    int highest, lowest;
-    int opening_price, closing_price;
+    double highest, lowest;
+    double opening_price, closing_price;
 };
 
 #endif //PROJECT_CANDLESTICK_HPP
