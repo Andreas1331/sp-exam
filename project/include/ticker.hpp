@@ -8,7 +8,11 @@
 #include <string>
 #include <vector>
 #include <ctime>
-#include <candlestick.hpp>
+#include <iostream>
+#include <math.h>
+#include <tuple>
+
+#include "candlestick.hpp"
 
 struct trade_stamp {
     std::tm time;
@@ -57,6 +61,43 @@ public:
         });
     }
 
+    std::tuple<std::vector<double>, std::vector<double>>
+    get_stochastic_indicators(const std::vector<candlestick> &candlesticks, const int &&trading_period_X,
+                              const int &&number_of_periods_Y) const {
+        // Pre-allocate enough storage for our values
+        std::vector<double> blueCurve(candlesticks.size());
+        std::vector<double> redCurve(candlesticks.size());
+
+        // Calculate the fast-moving oscillator
+        for (int i = 0; i < candlesticks.size(); i++) {
+            int start_index = (i - trading_period_X);
+            start_index = (start_index < 0) ? 0
+                                            : start_index; // Make sure we do not grab unknown values from our sticks vector
+            int most_recent_index = i - 1;
+            most_recent_index = (most_recent_index < 0) ? 0 : most_recent_index;
+
+            const double L = {std::min_element(candlesticks.begin() + start_index, candlesticks.begin() + i,
+                                               [](const candlestick &c1, const candlestick &c2) {
+                                                   return c1.lowest < c2.lowest;
+                                               })->lowest};
+
+            const double H = {std::max_element(candlesticks.begin() + start_index, candlesticks.begin() + i,
+                                               [](const candlestick &c1, const candlestick &c2) {
+                                                   return c1.highest < c2.highest;
+                                               })->highest};
+            const double C = candlesticks[most_recent_index].closing_price;
+
+            double K = ((C - L) / (H - L) * 100);
+
+            K = std::isnan(K) ? 0
+                              : K; // As the data provided in the assignment is dirty, values will sometimes become NaN
+            blueCurve[i] = std::move(K);
+        }
+        
+
+        return std::make_tuple(blueCurve, redCurve);
+    }
+
     template<typename StickPredicate>
     std::vector<candlestick> get_candlesticks(StickPredicate pred) {
         std::vector<candlestick> candlesticks{};
@@ -68,6 +109,7 @@ public:
             // Find all matching trades using the predicate
             for (const auto &t_tmp: tmp_trades) {
                 if (pred(t_tmp, t)) {
+                    // TODO: Try to remove the t_tmp from tmp_trades here instead of waiting until outside the for-loop
                     candle_stamps.push_back(t_tmp);
                 }
             }

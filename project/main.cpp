@@ -7,8 +7,6 @@
 const std::string FILE_TO_OPEN{"../DANSKE.json"};
 
 int main() {
-    trade_stamp l {};
-
     // Exercise 1 & 2)
     std::ifstream file{FILE_TO_OPEN};
     if (file) {
@@ -24,6 +22,9 @@ int main() {
                    t1.time.tm_mday == t2.time.tm_mday &&
                    t1.time.tm_mon == t2.time.tm_mon);
         });
+        // Exercise 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators
+        auto indicators = t.get_stochastic_indicators(data, 14, 3);
+        return 0;
         for (auto stick: data) {
             std::cout << stick.lowest << std::endl;
             std::cout << stick.highest << std::endl;

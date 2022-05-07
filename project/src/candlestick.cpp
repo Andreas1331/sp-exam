@@ -3,13 +3,11 @@
 //
 
 #include <vector>
-#include <iostream>
 
 #include "candlestick.hpp"
 #include "ticker.hpp"
 
 candlestick candlestick::calculate_candlestick(const std::vector<trade_stamp> &trades) {
-    //std::cout << "candle length: " << trades.size() << std::endl;
     candlestick stick{};
     stick.opening_price = {trades[0].price};
     stick.closing_price = {trades[trades.size() - 1].price};
