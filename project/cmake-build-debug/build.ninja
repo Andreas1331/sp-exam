@@ -52,9 +52,16 @@ build cmake_object_order_depends_target_project: phony || CMakeFiles/project.dir
 build CMakeFiles/project.dir/main.cpp.obj: CXX_COMPILER__project_Debug C$:/Users/andre/Documents/GitHub/sp_exam/project/main.cpp || cmake_object_order_depends_target_project
   DEP_FILE = CMakeFiles\project.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++20
-  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include
+  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include -IC:/Users/andre/Documents/GitHub/sp_exam/project/src
   OBJECT_DIR = CMakeFiles\project.dir
   OBJECT_FILE_DIR = CMakeFiles\project.dir
+
+build CMakeFiles/project.dir/src/candlestick.cpp.obj: CXX_COMPILER__project_Debug C$:/Users/andre/Documents/GitHub/sp_exam/project/src/candlestick.cpp || cmake_object_order_depends_target_project
+  DEP_FILE = CMakeFiles\project.dir\src\candlestick.cpp.obj.d
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include -IC:/Users/andre/Documents/GitHub/sp_exam/project/src
+  OBJECT_DIR = CMakeFiles\project.dir
+  OBJECT_FILE_DIR = CMakeFiles\project.dir\src
 
 
 # =============================================================================
@@ -64,7 +71,7 @@ build CMakeFiles/project.dir/main.cpp.obj: CXX_COMPILER__project_Debug C$:/Users
 #############################################
 # Link the executable project.exe
 
-build project.exe: CXX_EXECUTABLE_LINKER__project_Debug CMakeFiles/project.dir/main.cpp.obj
+build project.exe: CXX_EXECUTABLE_LINKER__project_Debug CMakeFiles/project.dir/main.cpp.obj CMakeFiles/project.dir/src/candlestick.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\project.dir
