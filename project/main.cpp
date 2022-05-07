@@ -4,7 +4,7 @@
 #include "json.hpp"
 #include "ticker.hpp"
 
-const std::string FILE_TO_OPEN {"../testfile.json"};
+const std::string FILE_TO_OPEN {"../DANSKE.json"};
 
 int main() {
     // Exercise 1 & 2)

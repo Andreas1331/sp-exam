@@ -10,7 +10,8 @@
 
 struct trade_stamp {
     std::tm time;
-    int price, amount, seq, code;
+    double price;
+    int amount, seq, code;
     std::string buyer, seller;
 
     /** visitor support with full access, e.g. for reading-in */
@@ -49,6 +50,10 @@ public:
         visit("sector", sector);
         visit("segment", segment);
         visit("trades", trades);
+    }
+
+    void get_candlestick(){
+
     }
 };
 
