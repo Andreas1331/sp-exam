@@ -18,11 +18,7 @@ int main() {
 
         /** Assignment 3) The predicate will allow for control over the desired period that makes up the candlesticks.
          * The predicate below will aggregate all matching days into a set of candlesticks. */
-        const auto candles = t.get_candlesticks([](const trade_stamp &t1, const trade_stamp &t2) {
-            return (t1.time.tm_year == t2.time.tm_year &&
-                   t1.time.tm_mday == t2.time.tm_mday &&
-                   t1.time.tm_mon == t2.time.tm_mon);
-        });
+        const auto candles = t.get_candlesticks(ticker::candle_intervals::day);
         for (const auto& stick: candles) {
             stick.print(std::cout);
         }
@@ -34,7 +30,7 @@ int main() {
         assign_strat.run_strategy(indicators, candles);
         assign_strat.print_result(std::cout);
 
-        
+
     } else {
         std::cout << "No file found ..." << std::endl;
     }
