@@ -15,7 +15,7 @@
 
 #include "candlestick.hpp"
 
-/* Will invoke the action for each index and provide the start index of the desired window size as well */
+/** Will invoke the action for each index and provide the start index of the desired window size as well */
 template<typename T1, typename T2>
 void slide_window(const std::vector<T1> &in, const T2 action, const int &windowSize) {
     int start_index, index_before_i;
@@ -89,11 +89,11 @@ public:
     std::tuple<std::vector<double>, std::vector<double>>
     get_stochastic_indicators(const std::vector<candlestick> &candlesticks, const int &&trading_period_X,
                               const int &&number_of_periods_Y) const {
-        // Pre-allocate enough storage for our values
+        /** Pre-allocate enough storage for our values */
         std::vector<double> blueCurve(candlesticks.size());
         std::vector<double> redCurve(candlesticks.size());
 
-        // Calculate the fast-moving oscillator
+        /** Calculate the fast-moving oscillator */
         slide_window(candlesticks, [&blueCurve,&candlesticks](const auto start, const auto index_before_i, const auto index) {
             const double L = {std::min_element(candlesticks.begin() + start, candlesticks.begin() + index,
                                                [](const candlestick &c1, const candlestick &c2) {
@@ -112,7 +112,7 @@ public:
                               : K; // As the data provided in the assignment is dirty, values will sometimes become NaN
             blueCurve[index] = {K};
         }, trading_period_X);
-        // Calculate the slow-moving oscillator
+        /** Calculate the slow-moving oscillator */
         slide_window(blueCurve, [&redCurve,&blueCurve,&number_of_periods_Y](const auto start, const auto index_before_i, const auto index) {
             double D = get_average(blueCurve, number_of_periods_Y, start, index, 0.0);
             redCurve[index] = {D};

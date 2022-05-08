@@ -7,31 +7,27 @@
 const std::string FILE_TO_OPEN{"../DANSKE.json"};
 
 int main() {
-    // Exercise 1 & 2)
+    /** Exercise 1 & 2) */
     std::ifstream file{FILE_TO_OPEN};
     if (file) {
         auto t = ticker{};
         file >> json_t{t};
-        // Exercise 6) Makes use of lambda expression to sort the trades by their tm value converted to mktime
+        /** Exercise 6) Makes use of lambda expression to sort the trades by their tm value converted to mktime */
         t.sort_trades();
 
-        // Exercise 3) The predicate will allow for control over the desired period that makes up the candlesticks.
-        // The predicate below will aggregate all matching days into a set of candlesticks.
-        const auto data = t.get_candlesticks([](const trade_stamp &t1, const trade_stamp &t2) {
+        /** Exercise 3) The predicate will allow for control over the desired period that makes up the candlesticks.
+         * The predicate below will aggregate all matching days into a set of candlesticks. */
+        const auto candles = t.get_candlesticks([](const trade_stamp &t1, const trade_stamp &t2) {
             return (t1.time.tm_year == t2.time.tm_year &&
                    t1.time.tm_mday == t2.time.tm_mday &&
                    t1.time.tm_mon == t2.time.tm_mon);
         });
-        // Exercise 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators
-        auto indicators = t.get_stochastic_indicators(data, 14, 3);
-        return 0;
-        for (auto stick: data) {
-            std::cout << stick.lowest << std::endl;
-            std::cout << stick.highest << std::endl;
-            std::cout << stick.opening_price << std::endl;
-            std::cout << stick.closing_price << std::endl;
-            std::cout << "------------------------------" << std::endl;
+        for (const auto& stick: candles) {
+            stick.print(std::cout);
         }
+        /** Exercise 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
+        const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
+
     } else {
         std::cout << "No file found ..." << std::endl;
     }
