@@ -6,16 +6,16 @@
 #define PROJECT_CANDLESTICK_HPP
 
 #include <iostream>
-
-struct trade_stamp; // Forward declaration to avoid circular-dependencies
+#include "tradestamp.hpp"
 
 class candlestick{
 public:
+    std::tm time;
     double highest, lowest;
     double opening_price, closing_price;
 
-    static candlestick calculate_candlestick(const std::vector<trade_stamp> &trades);
-    /** Prints the candlestick in a table format */
+    static candlestick calculate_candlestick(const std::vector<ticker_essentials::trade_stamp> &trades);
+    /** Prints the candlestick in a 'table' format */
     std::ostream& print(std::ostream& os) const;
 };
 

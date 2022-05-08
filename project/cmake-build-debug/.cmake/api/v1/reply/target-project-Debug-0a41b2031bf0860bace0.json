@@ -130,7 +130,8 @@
 				3,
 				4,
 				6,
-				7
+				7,
+				8
 			]
 		}
 	],
@@ -176,6 +177,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/assignmentstrategy.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/tradestamp.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],

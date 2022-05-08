@@ -5,10 +5,12 @@
 #include <vector>
 
 #include "candlestick.hpp"
-#include "ticker.hpp"
+
+using namespace ticker_essentials;
 
 candlestick candlestick::calculate_candlestick(const std::vector<trade_stamp> &trades) {
     candlestick stick{};
+    stick.time = {trades[0].time};
     stick.opening_price = {trades[0].price};
     stick.closing_price = {trades[trades.size() - 1].price};
     // Now find the highest and lowest price that the stock was purchased for in this range

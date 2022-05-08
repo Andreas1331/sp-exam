@@ -7,6 +7,9 @@
 
 const std::string FILE_TO_OPEN{"../DANSKE.json"};
 
+using namespace ticker_strategies;
+using namespace ticker_essentials;
+
 int main() {
     /** Assignment 1 & 2) */
     std::ifstream file{FILE_TO_OPEN};
