@@ -8,15 +8,15 @@
 const std::string FILE_TO_OPEN{"../DANSKE.json"};
 
 int main() {
-    /** Exercise 1 & 2) */
+    /** Assignment 1 & 2) */
     std::ifstream file{FILE_TO_OPEN};
     if (file) {
         auto t = ticker{};
         file >> json_t{t};
-        /** Exercise 6) Makes use of lambda expression to sort the trades by their tm value converted to mktime */
+        /** Assignment 6) Makes use of lambda expression to sort the trades by their tm value converted to mktime */
         t.sort_trades();
 
-        /** Exercise 3) The predicate will allow for control over the desired period that makes up the candlesticks.
+        /** Assignment 3) The predicate will allow for control over the desired period that makes up the candlesticks.
          * The predicate below will aggregate all matching days into a set of candlesticks. */
         const auto candles = t.get_candlesticks([](const trade_stamp &t1, const trade_stamp &t2) {
             return (t1.time.tm_year == t2.time.tm_year &&
@@ -26,15 +26,15 @@ int main() {
         for (const auto& stick: candles) {
             stick.print(std::cout);
         }
-        /** Exercise 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
+        /** Assignment 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
         const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
-        //const auto blueCurve = std::get<0>(indicators);
-        //const auto redCurve = std::get<1>(indicators);
-
+        /** Assignment 5) assignment_strategy tried to follow the description provided in the exam */
         auto assign_strat = assignment_strategy(100000);
         assign_strat.run_strategy(indicators, candles);
         assign_strat.print_result(std::cout);
+
+        
     } else {
         std::cout << "No file found ..." << std::endl;
     }
