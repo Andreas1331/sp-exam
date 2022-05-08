@@ -128,7 +128,9 @@
 				1,
 				2,
 				3,
-				4
+				4,
+				6,
+				7
 			]
 		}
 	],
@@ -165,6 +167,16 @@
 			"compileGroupIndex" : 0,
 			"path" : "src/candlestick.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/tradestrategy.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/assignmentstrategy.hpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"

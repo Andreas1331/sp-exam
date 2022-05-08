@@ -17,10 +17,10 @@
 
 /** Will invoke the action for each index and provide the start index of the desired window size as well */
 template<typename T1, typename T2>
-void slide_window(const std::vector<T1> &in, const T2 action, const int &windowSize) {
+void slide_window(const std::vector<T1> &in, const T2 action, const int &window_size) {
     int start_index, index_before_i;
     for (int i = 0; i < in.size(); i++) {
-        start_index = (i - windowSize);
+        start_index = (i - window_size);
         start_index = (start_index < 0) ? 0
                                         : start_index; // Make sure we do not use negative indices
         index_before_i = i - 1;

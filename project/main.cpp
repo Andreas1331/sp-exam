@@ -3,6 +3,7 @@
 
 #include "json.hpp"
 #include "ticker.hpp"
+#include "assignmentstrategy.hpp"
 
 const std::string FILE_TO_OPEN{"../DANSKE.json"};
 
@@ -27,6 +28,12 @@ int main() {
         }
         /** Exercise 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
         const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
+
+        //const auto blueCurve = std::get<0>(indicators);
+        //const auto redCurve = std::get<1>(indicators);
+
+        auto assign_strat = assignment_strategy(10000);
+        assign_strat.run_strategy(indicators, candles);
 
     } else {
         std::cout << "No file found ..." << std::endl;
