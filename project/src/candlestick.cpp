@@ -27,7 +27,7 @@ candlestick candlestick::calculate_candlestick(const std::vector<trade_stamp> &t
 std::ostream& candlestick::print(std::ostream &os) const
 {
     os << "Lowest" << '\t' << "Highest" << '\t' << "Opening" << '\t' << "Closing" << '\n';
-    os << lowest << ",\t" << highest << ",\t" << opening_price << ",\t" << closing_price << '\n';
+    os << lowest << '\t' << highest << '\t' << opening_price << '\t' << closing_price << '\n';
     os << "__________________________________________________________________________________" << '\n';
     return os;
 }
