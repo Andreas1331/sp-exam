@@ -32,9 +32,9 @@ int main() {
         //const auto blueCurve = std::get<0>(indicators);
         //const auto redCurve = std::get<1>(indicators);
 
-        auto assign_strat = assignment_strategy(10000);
+        auto assign_strat = assignment_strategy(100000);
         assign_strat.run_strategy(indicators, candles);
-
+        assign_strat.print_result(std::cout);
     } else {
         std::cout << "No file found ..." << std::endl;
     }
