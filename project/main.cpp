@@ -47,7 +47,7 @@ void analyze_ticker(const ticker &t){
 }
 
 int main() {
-    /** Assignment 7) Start three asynchronously threads to load three tickers into memory */
+    /** Assignment 7) Start three asynchronously threads to load three tickers into memory at the same time */
     auto fut1 = std::async(std::launch::async, load_ticker, DANSKE_BANK);
     auto fut2 = std::async(std::launch::async, load_ticker, CARL_B);
     auto fut3 = std::async(std::launch::async, load_ticker, NOVOZYMES);
