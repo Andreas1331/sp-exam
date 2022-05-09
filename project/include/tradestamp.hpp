@@ -30,9 +30,9 @@ namespace ticker_essentials {
 
         /** Prints the tradestamp in a 'table' format */
         std::ostream& print(std::ostream &os) const {
-            os << "Date" << "\t\t" << "Price" << '\t' << "Amount" << '\t' << "Buyer" << '\t' << "Seller" << '\n';
-            os << time.tm_mday << '/' << time.tm_mon << '/' << (1900 + time.tm_year) << '\t'
-               << price << '\t' << amount << '\t' << buyer << '\t' << seller << '\n';
+            os << "Date" << "\t\t" << "Price (DKK)" << '\t' << "Amount" << '\t' << "Buyer" << '\t' << "Seller" << '\n';
+            os << time.tm_mday << '/' << time.tm_mon << '/' << (1900 + time.tm_year) << "\t\t"
+               << price << "\t" << amount << '\t' << buyer << '\t' << seller << '\n';
             return os;
         };
     };

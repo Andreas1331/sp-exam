@@ -59,8 +59,8 @@ namespace ticker_strategies {
             for(const auto &t : trades){
                 t.print(std::cout);
             }
-            os << "Money" << '\t' << "Purchases" << '\t' << "Sales" << '\n';
-            os << current_money << '\t' << purchases << '\t' << sales << '\n';
+            os << "Money" << "\t\t" << "Purchases" << '\t' << "Sales" << '\n';
+            os << current_money << "\t\t" << purchases << '\t' << sales << '\n';
             os << "__________________________________________________________________________________" << '\n';
             return os;
         };

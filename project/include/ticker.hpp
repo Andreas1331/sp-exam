@@ -139,7 +139,7 @@ namespace ticker_essentials {
             return std::make_tuple(blueCurve, redCurve);
         }
 
-        std::vector<candlestick> get_candlesticks(const candle_intervals &&interval) {
+        std::vector<candlestick> get_candlesticks(const candle_intervals &&interval) const {
             switch (interval) {
                 case candle_intervals::hour: {
                     return find_candlesticks([](const std::tm &t1, const std::tm &t2) {
