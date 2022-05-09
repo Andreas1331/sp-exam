@@ -7,3 +7,12 @@ add_executable(project main.cpp include/json.hpp include/meta.hpp include/ticker
 
 include_directories(include)
 include_directories(src)
+
+add_library(doctest OBJECT src/doctest.cpp)
+
+add_executable(unittests src/unittests.cpp include/candlestick.hpp src/candlestick.cpp)
+target_link_libraries(unittests PRIVATE doctest)
+
+add_test(NAME unit_tests COMMAND unittests)
+
+enable_testing()

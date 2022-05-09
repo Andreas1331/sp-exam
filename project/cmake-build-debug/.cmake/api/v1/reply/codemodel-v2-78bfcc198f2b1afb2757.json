@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "project",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -38,9 +42,23 @@
 			[
 				{
 					"directoryIndex" : 0,
+					"id" : "doctest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-doctest-Debug-8f887b7a5c5e5750e9d4.json",
+					"name" : "doctest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
 					"id" : "project::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-project-Debug-0a41b2031bf0860bace0.json",
 					"name" : "project",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "unittests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-unittests-Debug-c7fc3b079a47e76b1f1a.json",
+					"name" : "unittests",
 					"projectIndex" : 0
 				}
 			]

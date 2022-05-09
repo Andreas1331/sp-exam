@@ -83,17 +83,6 @@ build project.exe: CXX_EXECUTABLE_LINKER__project_Debug CMakeFiles/project.dir/m
 
 
 #############################################
-# Utility command for edit_cache
-
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\andre\Documents\GitHub\sp_exam\project\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build edit_cache: phony CMakeFiles/edit_cache.util
-
-
-#############################################
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
@@ -104,10 +93,99 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
+
+#############################################
+# Utility command for test
+
+build CMakeFiles/test.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\andre\Documents\GitHub\sp_exam\project\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.3\bin\cmake\win\bin\ctest.exe" --force-new-ctest-process "
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build test: phony CMakeFiles/test.util
+
+# =============================================================================
+# Object build statements for OBJECT_LIBRARY target doctest
+
+
+#############################################
+# Order-only phony target for doctest
+
+build cmake_object_order_depends_target_doctest: phony || CMakeFiles/doctest.dir
+
+build CMakeFiles/doctest.dir/src/doctest.cpp.obj: CXX_COMPILER__doctest_Debug C$:/Users/andre/Documents/GitHub/sp_exam/project/src/doctest.cpp || cmake_object_order_depends_target_doctest
+  DEP_FILE = CMakeFiles\doctest.dir\src\doctest.cpp.obj.d
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include -IC:/Users/andre/Documents/GitHub/sp_exam/project/src
+  OBJECT_DIR = CMakeFiles\doctest.dir
+  OBJECT_FILE_DIR = CMakeFiles\doctest.dir\src
+
+
+
+#############################################
+# Object library doctest
+
+build doctest: phony CMakeFiles/doctest.dir/src/doctest.cpp.obj
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\andre\Documents\GitHub\sp_exam\project\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.3\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target unittests
+
+
+#############################################
+# Order-only phony target for unittests
+
+build cmake_object_order_depends_target_unittests: phony || cmake_object_order_depends_target_doctest
+
+build CMakeFiles/unittests.dir/src/unittests.cpp.obj: CXX_COMPILER__unittests_Debug C$:/Users/andre/Documents/GitHub/sp_exam/project/src/unittests.cpp || cmake_object_order_depends_target_unittests
+  DEP_FILE = CMakeFiles\unittests.dir\src\unittests.cpp.obj.d
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include -IC:/Users/andre/Documents/GitHub/sp_exam/project/src
+  OBJECT_DIR = CMakeFiles\unittests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unittests.dir\src
+
+build CMakeFiles/unittests.dir/src/candlestick.cpp.obj: CXX_COMPILER__unittests_Debug C$:/Users/andre/Documents/GitHub/sp_exam/project/src/candlestick.cpp || cmake_object_order_depends_target_unittests
+  DEP_FILE = CMakeFiles\unittests.dir\src\candlestick.cpp.obj.d
+  FLAGS = -g -std=gnu++20
+  INCLUDES = -IC:/Users/andre/Documents/GitHub/sp_exam/project/include -IC:/Users/andre/Documents/GitHub/sp_exam/project/src
+  OBJECT_DIR = CMakeFiles\unittests.dir
+  OBJECT_FILE_DIR = CMakeFiles\unittests.dir\src
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target unittests
+
+
+#############################################
+# Link the executable unittests.exe
+
+build unittests.exe: CXX_EXECUTABLE_LINKER__unittests_Debug CMakeFiles/doctest.dir/src/doctest.cpp.obj CMakeFiles/unittests.dir/src/unittests.cpp.obj CMakeFiles/unittests.dir/src/candlestick.cpp.obj || doctest
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\unittests.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = unittests.exe
+  TARGET_IMPLIB = libunittests.dll.a
+  TARGET_PDB = unittests.exe.dbg
+
 # =============================================================================
 # Target aliases.
 
 build project: phony project.exe
+
+build unittests: phony unittests.exe
 
 # =============================================================================
 # Folder targets.
@@ -117,7 +195,7 @@ build project: phony project.exe
 #############################################
 # Folder: C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-debug
 
-build all: phony project.exe
+build all: phony project.exe doctest unittests.exe
 
 # =============================================================================
 # Built-in targets

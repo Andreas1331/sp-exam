@@ -7,6 +7,7 @@
 
 #include <iterator>
 #include <type_traits>
+#include <ctime>
 
 template <typename T>
 constexpr auto is_bool_v = std::is_same_v<bool, std::remove_cv_t<std::remove_reference_t<T>>>;

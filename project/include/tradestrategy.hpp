@@ -14,7 +14,7 @@
 namespace ticker_strategies {
     class tradestrategy {
     protected:
-        using vector_c = std::vector<candlestick>;
+        using vector_c = std::vector<ticker_essentials::candlestick>;
         using vector_t = std::tuple<std::vector<double>, std::vector<double>>;
 
         /** We do not allow stocks owned to be in fractions */
@@ -24,6 +24,8 @@ namespace ticker_strategies {
 
         /** Purchase as many stocks as we can */
         void buy(const double &unit_price, const std::tm &time) {
+            if(unit_price <= 0)
+                return;
             int stocks_bought = current_money / unit_price;
             if (stocks_bought > 0) {
                 stocks_amount += stocks_bought;
@@ -38,6 +40,8 @@ namespace ticker_strategies {
 
         /** Sell every single stock at the provided unit price */
         void sell(const double &unit_price) {
+            if(unit_price <= 0)
+                return;
             if (stocks_amount > 0) {
                 current_money += unit_price * stocks_amount;
                 stocks_amount = 0;
@@ -52,7 +56,7 @@ namespace ticker_strategies {
         explicit tradestrategy(double money) : initial_money{money}, current_money{money} {};
 
         virtual void run_strategy(const vector_t &oscillators,
-                                  const std::vector<candlestick> &candles) = 0;
+                                  const std::vector<ticker_essentials::candlestick> &candles) = 0;
 
         /** Prints the strategy in a 'table' format */
         std::ostream &print_result(std::ostream &os) const {
