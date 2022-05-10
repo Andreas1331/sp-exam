@@ -6,10 +6,11 @@
 #include <chrono>
 
 #include <cmath>
+#include <string>
 
 struct measure_t
 {
-    const char* name;
+    const std::string name;
     size_t count{0};
     double sum{0}; // the sum of timings
     double sumsq{0}; // the sum of squared timings
@@ -18,8 +19,8 @@ struct measure_t
         sum += time;
         sumsq += time * time;
     }
-    double mean() const { return sum / count; }
-    double half_conf_interval() const {
+    [[nodiscard]] double mean() const { return sum / count; }
+    [[nodiscard]] double half_conf_interval() const {
         auto standard_error = std::sqrt((sumsq - sum*sum/count) / (count - 1) / count);
         return standard_error * 1.960147;
     }
@@ -39,7 +40,7 @@ public:
     }
     void reset() { last = clk::now(); }
     /** registers a new benchmark */
-    size_t add(const char* name) {
+    size_t add(const std::string &name) {
         auto res = measurements.size(); // This will return the index of the new element
         measurements.push_back({name});
         reset();

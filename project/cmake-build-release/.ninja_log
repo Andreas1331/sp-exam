@@ -1,0 +1,12 @@
+# ninja log v5
+5	879	6738769195085698	CMakeFiles/project.dir/src/candlestick.cpp.obj	e3a48f17b4f51996
+9	928	6738769195710656	CMakeFiles/project.dir/src/benchmark.cpp.obj	81576f794c3eb17d
+1	4000	6738769226335776	CMakeFiles/project.dir/main.cpp.obj	b8955c01ba011f26
+4001	4158	6738769227898772	project.exe	b932ec107cc6d49d
+8	939	6738770373754470	CMakeFiles/project.dir/src/benchmark.cpp.obj	81576f794c3eb17d
+3	3879	6738770403143017	CMakeFiles/project.dir/main.cpp.obj	b8955c01ba011f26
+3880	4025	6738770404549506	project.exe	b932ec107cc6d49d
+4	4294	6738771648770634	CMakeFiles/project.dir/main.cpp.obj	b8955c01ba011f26
+4294	4446	6738771650180134	project.exe	b932ec107cc6d49d
+4	3700	6738772908443811	CMakeFiles/project.dir/main.cpp.obj	b8955c01ba011f26
+3700	3850	6738772909850318	project.exe	b932ec107cc6d49d

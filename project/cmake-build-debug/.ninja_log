@@ -1,23 +1,9 @@
 # ninja log v5
-4	2479	6738752202991963	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2479	3126	6738752209397847	project.exe	e3dba8b82d3f02a9
+3	2512	6738768064541726	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
+2513	3200	6738768071458034	project.exe	cfee40c1772b4a43
 12	990	6738745055905051	CMakeFiles/project.dir/src/candlestick.cpp.obj	a285ed6bb96951ed
 1	4331	6737903965846861	CMakeFiles/doctest.dir/src/doctest.cpp.obj	f7522cee9a3ef953
 4	757	6737933241916542	CMakeFiles/unittests.dir/src/candlestick.cpp.obj	e228fecce8faafe8
 848	1628	6737933386453301	unittests.exe	af32e6b2013bc6a4
 4	846	6737933378641227	CMakeFiles/unittests.dir/src/unittests.cpp.obj	3d38d25aad274b18
-4	1112	6738756399510319	CMakeFiles/project.dir/src/benchmark.cpp.obj	4e9a4a24781e1bd1
-1113	1847	6738756406697545	project.exe	cfee40c1772b4a43
 11	867	6738759877444422	CMakeFiles/project.dir/src/benchmark.cpp.obj	4e9a4a24781e1bd1
-6	2725	6738759895882493	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2726	3426	6738759902913146	project.exe	cfee40c1772b4a43
-4	2571	6738764003272242	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2572	3278	6738764010303444	project.exe	cfee40c1772b4a43
-6	2712	6738764783690771	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2713	3399	6738764790565417	project.exe	cfee40c1772b4a43
-4	2522	6738765413995238	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2522	3206	6738765420870209	project.exe	cfee40c1772b4a43
-4	2545	6738766029940282	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2546	3224	6738766036814794	project.exe	cfee40c1772b4a43
-3	2512	6738768064541726	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2513	3200	6738768071458034	project.exe	cfee40c1772b4a43

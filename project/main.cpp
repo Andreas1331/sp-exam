@@ -51,17 +51,19 @@ void analyze_ticker(const ticker &t){
      * is a classic attempt at not selling. */
     auto assign_strat = assignment_strategy(STARTING_MONEY);
     auto hold_strat = holding_strategy(STARTING_MONEY);
+
+    /** Assignment 9) The code before the fix is not included, but instead described in the PDF */
     auto bm = benchmark{};
-    size_t id = bm.add("Strategy-Measure-Before-Fix");
+    size_t id = bm.add("Strategy-Measure-After-Fix");
     /** Execute the strategy and measure the time it took */
     for(int i = 0; i < BENCHMARK_TIMES; i++){
         assign_strat.run_strategy(indicators, candles);
         bm.measure(id);
     }
     bm.print(std::cout);
-    return;
     assign_strat.print_result(std::cout);
 
+    /** Run the holding strategy */
     hold_strat.run_strategy(indicators, candles);
     hold_strat.print_result(std::cout);
 }

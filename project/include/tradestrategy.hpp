@@ -65,7 +65,6 @@ namespace ticker_strategies {
 
         virtual void run_strategy(const vector_t &oscillators,
                                   const std::vector<ticker_essentials::candlestick> &candles) = 0;
-
         /** Prints the strategy in a 'table' format */
         std::ostream &print_result(std::ostream &os) const {
             std::cout << "DISPLAYING STRATEGY RESULT FOR \"" << strategy_name << "\":" << std::endl;
