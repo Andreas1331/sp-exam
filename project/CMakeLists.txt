@@ -3,7 +3,7 @@ project(project)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(project main.cpp include/json.hpp include/meta.hpp include/ticker.hpp include/candlestick.hpp src/candlestick.cpp include/tradestrategy.hpp include/assignmentstrategy.hpp include/tradestamp.hpp)
+add_executable(project main.cpp include/json.hpp include/meta.hpp include/ticker.hpp include/candlestick.hpp src/candlestick.cpp include/tradestrategy.hpp include/assignmentstrategy.hpp include/tradestamp.hpp include/holdingstrategy.hpp)
 
 include_directories(include)
 include_directories(src)

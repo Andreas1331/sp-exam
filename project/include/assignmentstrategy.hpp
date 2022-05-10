@@ -8,13 +8,12 @@
 #include "tradestrategy.hpp"
 
 namespace ticker_strategies{
-
     class assignment_strategy : public tradestrategy {
     public:
-        explicit assignment_strategy(int money) : tradestrategy(money){};
+        explicit assignment_strategy(int money) : tradestrategy("Assignment strategy", money){};
+
         void run_strategy(const vector_t &oscillators,
                           const vector_c &candles) override {
-
             bool make_purchase {false};
             bool sell_everything {false};
             /** Go through each candle */
@@ -23,7 +22,7 @@ namespace ticker_strategies{
                     buy(candles[i].opening_price, candles[i].time);
                 }
                 if(sell_everything){
-                    sell(candles[i].opening_price);
+                    sell(candles[i].opening_price, candles[i].time);
                 }
 
                 /** Figure out whether to either buy or sell the following day */
@@ -34,7 +33,7 @@ namespace ticker_strategies{
                 sell_everything = (K >= tradestrategy::OVERBOUGHT_BOUNDARY && K <= D);
             }
 
-            sell(candles[candles.size() - 1].opening_price);
+            sell(candles[candles.size() - 1].opening_price, candles[candles.size() -1].time);
         };
     };
 }

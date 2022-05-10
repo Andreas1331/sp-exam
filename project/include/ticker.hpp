@@ -24,7 +24,7 @@ void slide_window(const std::vector<T1> &in, const T2 action, const int &window_
     for (int i = 0; i < in.size(); i++) {
         start_index = (i - window_size);
         start_index = (start_index < 0) ? 0
-                                        : start_index; // Make sure we do not use negative indices
+                                        : start_index; /** Make sure we do not use negative indices */
         index_before_i = i - 1;
         index_before_i = (index_before_i < 0) ? 0 : index_before_i;
 
@@ -44,7 +44,7 @@ T get_average(std::vector<T> const &v, const int &total_elements, const int &sta
 
 namespace ticker_essentials {
 /** A custom class to contain all information related to a specific ticker e.g name, trades.
- * The class also implements the visitor pattern to allow for JSON parsing */
+ * The class also implements the visitor interface to allow for JSON parsing */
     class ticker {
     private:
         template<typename Comparer>

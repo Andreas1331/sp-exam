@@ -131,7 +131,8 @@
 				4,
 				6,
 				7,
-				8
+				8,
+				9
 			]
 		}
 	],
@@ -182,6 +183,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "include/tradestamp.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/holdingstrategy.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],

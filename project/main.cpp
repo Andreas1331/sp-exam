@@ -5,6 +5,7 @@
 #include "json.hpp"
 #include "ticker.hpp"
 #include "assignmentstrategy.hpp"
+#include "holdingstrategy.hpp"
 
 /** A select few of the JSON files for testing, path may change depending on from where execution takes place */
 const std::string DANSKE_BANK{"../DANSKE.json"};
@@ -13,6 +14,8 @@ const std::string NOVOZYMES{"../NZYMB.json"};
 
 using namespace ticker_strategies;
 using namespace ticker_essentials;
+
+constexpr int STARTING_MONEY = 10000;
 
 ticker load_ticker(const std::string &path){
     /** Assignment 1 & 2) */
@@ -41,7 +44,9 @@ void analyze_ticker(const ticker &t){
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
     /** Assignment 5) assignment_strategy tried to follow the description provided in the exam */
-    auto assign_strat = assignment_strategy(100000);
+    auto assign_strat = assignment_strategy(STARTING_MONEY);
+    auto hold_strat = holding_strategy(STARTING_MONEY);
+
     assign_strat.run_strategy(indicators, candles);
     assign_strat.print_result(std::cout);
 }
