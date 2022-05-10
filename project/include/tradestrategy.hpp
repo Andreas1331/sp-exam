@@ -15,8 +15,7 @@
 namespace ticker_strategies {
     class tradestrategy {
     private:
-        static constexpr size_t STRAT_PRINT_WIDTH_LARGE = 24;
-        static constexpr size_t STRAT_PRINT_WIDTH_MEDIUM = 20;
+        static constexpr size_t STRAT_PRINT_WIDTH = 20;
     protected:
         using vector_c = std::vector<ticker_essentials::candlestick>;
         using vector_t = std::tuple<std::vector<double>, std::vector<double>>;
@@ -74,11 +73,11 @@ namespace ticker_strategies {
                 t.print(std::cout);
             }
             os << "_____________ OVERVIEW _____________" << '\n';
-            os << std::left << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << "Money left (DKK):" << std::setw(STRAT_PRINT_WIDTH_LARGE) << "Difference (DKK):"
-               << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << "Purchases#:" << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << "Sales#:" << '\n';
-            os << std::left << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << current_money << std::setw(STRAT_PRINT_WIDTH_LARGE)
-               << (current_money - initial_money) << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << purchases
-               << std::setw(STRAT_PRINT_WIDTH_MEDIUM) << sales << '\n';
+            os << std::left << std::setw(STRAT_PRINT_WIDTH) << "Money left (DKK):" << std::setw(STRAT_PRINT_WIDTH) << "Difference (DKK):"
+               << std::setw(STRAT_PRINT_WIDTH) << "Purchases#:" << std::setw(STRAT_PRINT_WIDTH) << "Sales#:" << '\n';
+            os << std::left << std::setw(STRAT_PRINT_WIDTH) << current_money << std::setw(STRAT_PRINT_WIDTH)
+               << (current_money - initial_money) << std::setw(STRAT_PRINT_WIDTH) << purchases
+               << std::setw(STRAT_PRINT_WIDTH) << sales << '\n';
             os << "__________________________________________________________________________________" << '\n';
             return os;
         };

@@ -28,7 +28,7 @@ ticker load_ticker(const std::string &path){
 
         return t;
     } else {
-        throw "File " + path + " not found";
+        throw std::logic_error("File " + path + " not found");
     }
 
 }
@@ -37,9 +37,11 @@ void analyze_ticker(const ticker &t){
     /** Assignment 3) The predicate will allow for control over the desired period that makes up the candlesticks.
      * The predicate below will aggregate all matching days into a set of candlesticks. */
     const auto candles = t.get_candlesticks(ticker::candle_intervals::day);
+    /*
     for (const auto& stick: candles) {
         stick.print(std::cout);
     }
+     */
     /** Assignment 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
@@ -49,6 +51,9 @@ void analyze_ticker(const ticker &t){
 
     assign_strat.run_strategy(indicators, candles);
     assign_strat.print_result(std::cout);
+
+    hold_strat.run_strategy(indicators, candles);
+    hold_strat.print_result(std::cout);
 }
 
 int main() {
