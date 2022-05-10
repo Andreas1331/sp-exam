@@ -113,6 +113,10 @@ std::ostream& operator<<(std::ostream& os, const json_t<T>& json)
         os << json.data;
     else if constexpr (is_string_v<T>)
         os << std::quoted(json.data);
+    else if constexpr(is_tm_v<T>){
+        // Just create a shared const variable for everyone containing the format (other formats not supported)
+        os << '\"' << std::put_time(&json.data, "%Y-%m-%dT%H:%M:%S") << '\"';
+    }
     else if constexpr (is_container_v<T>) {
         auto b = std::begin(json.data), e = std::end(json.data);
         os << '[';

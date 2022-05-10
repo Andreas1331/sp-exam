@@ -17,8 +17,8 @@ constexpr double BENCHMARK_TIMES = 100;
 
 /** A select few of the JSON files for testing, path may change depending on from where execution takes place */
 const std::string DANSKE_BANK{"../DANSKE.json"};
-const std::string CARL_B{"../CARLB.json"};
-const std::string NOVOZYMES{"../NZYMB.json"};
+const std::string FLS{"../FLS.json"};
+const std::string PNDORA{"../PNDORA.json"};
 
 ticker load_ticker(const std::string &path){
     /** Assignment 1 & 2) */
@@ -33,7 +33,13 @@ ticker load_ticker(const std::string &path){
     } else {
         throw std::logic_error("File " + path + " not found");
     }
+}
 
+template<typename T1>
+void save_data_to_json(const std::string &file_name, T1 data){
+    std::ofstream file {file_name};
+    file << json_t{data};
+    file.close();
 }
 
 void analyze_ticker(const ticker &t){
@@ -43,15 +49,25 @@ void analyze_ticker(const ticker &t){
     for (const auto& stick: candles) {
         stick.print(std::cout);
     }
+
     /** Assignment 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
+
+    /** I save some of the data to be loaded in Python later for plotting */
+    save_data_to_json("candle_data.JSON",candles);
+    save_data_to_json("indicators.JSON",indicators);
 
     /** Assignment 5) assignment_strategy tried to follow the description provided in the exam and holding_strategy
      * is a classic attempt at not selling. */
     auto assign_strat = assignment_strategy(STARTING_MONEY);
     auto hold_strat = holding_strategy(STARTING_MONEY);
 
-    /** Assignment 9) The code before the fix is not included, but instead described in the PDF */
+    /** Assignment 9)
+     * (Please take a look at the provided images in the ZIP folder for the printed results)
+     * What I did to speed up the analyses: I changed the input for run_strategy(..) to be of call-by-reference,
+     * as this will prevent calling the copy-constructor each time run_strategy(..) is invoked. This is much more efficient,
+     * and quickly changed the runtime to be almost twice as fast. The confidence levels are sufficiently low for me to make,
+     * the assumption that I've tested using enough iterations. */
     auto bm = benchmark{};
     size_t id = bm.add("Strategy-Measure-After-Fix");
     /** Execute the strategy and measure the time it took */
@@ -73,8 +89,8 @@ void analyze_ticker(const ticker &t){
 int main() {
     /** Assignment 7) Start three asynchronously threads to load three tickers into memory at the same time */
     auto fut1 = std::async(std::launch::async, load_ticker, DANSKE_BANK);
-    auto fut2 = std::async(std::launch::async, load_ticker, CARL_B);
-    auto fut3 = std::async(std::launch::async, load_ticker, NOVOZYMES);
+    auto fut2 = std::async(std::launch::async, load_ticker, FLS);
+    auto fut3 = std::async(std::launch::async, load_ticker, PNDORA);
 
     /** Store the futures and go through them one by one retrieving the results afterwards */
     auto futures = std::vector<std::future<ticker>>();
