@@ -1,7 +1,3 @@
-//
-// Created by andre on 10-05-2022.
-//
-
 #ifndef PROJECT_HOLDINGSTRATEGY_HPP
 #define PROJECT_HOLDINGSTRATEGY_HPP
 
@@ -10,7 +6,7 @@
 namespace ticker_strategies{
     class holding_strategy : public tradestrategy {
     public:
-        explicit holding_strategy(int money) : tradestrategy("Holding strategy", money){};
+        explicit holding_strategy(double money) : tradestrategy("Holding strategy", money){};
 
         void run_strategy(const vector_t &oscillators,
                           const vector_c &candles) override {
@@ -21,6 +17,5 @@ namespace ticker_strategies{
         };
     };
 }
-
 
 #endif //PROJECT_HOLDINGSTRATEGY_HPP

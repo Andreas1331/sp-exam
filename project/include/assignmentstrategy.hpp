@@ -1,7 +1,3 @@
-//
-// Created by andre on 08-05-2022.
-//
-
 #ifndef PROJECT_ASSIGNMENTSTRATEGY_HPP
 #define PROJECT_ASSIGNMENTSTRATEGY_HPP
 
@@ -10,7 +6,7 @@
 namespace ticker_strategies{
     class assignment_strategy : public tradestrategy {
     public:
-        explicit assignment_strategy(int money) : tradestrategy("Assignment strategy", money){};
+        explicit assignment_strategy(double money) : tradestrategy("Assignment strategy", money){};
 
         void run_strategy(const vector_t &oscillators,
                           const vector_c &candles) override {

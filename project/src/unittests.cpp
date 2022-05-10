@@ -1,7 +1,3 @@
-//
-// Created by andre on 09-05-2022.
-//
-
 #ifndef PROJECT_UNITTESTS_CPP
 #define PROJECT_UNITTESTS_CPP
 

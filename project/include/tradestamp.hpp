@@ -1,14 +1,9 @@
-//
-// Created by andre on 08-05-2022.
-//
-
 #ifndef PROJECT_TRADESTAMP_HPP
 #define PROJECT_TRADESTAMP_HPP
 
 #include <iomanip>
 #include <ctime>
 #include <string>
-
 
 namespace ticker_essentials {
     struct trade_stamp {

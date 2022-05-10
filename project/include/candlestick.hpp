@@ -1,7 +1,3 @@
-//
-// Created by andre on 07-05-2022.
-//
-
 #ifndef PROJECT_CANDLESTICK_HPP
 #define PROJECT_CANDLESTICK_HPP
 
@@ -10,6 +6,8 @@
 
 namespace ticker_essentials{
     class candlestick{
+    private:
+        static constexpr size_t CANDLE_PRINT_WIDTH = 12;
     public:
         std::tm time;
         double highest, lowest;
@@ -20,6 +18,5 @@ namespace ticker_essentials{
         std::ostream& print(std::ostream& os) const;
     };
 }
-
 
 #endif //PROJECT_CANDLESTICK_HPP

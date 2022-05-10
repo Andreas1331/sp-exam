@@ -1,7 +1,3 @@
-//
-// Created by andre on 08-05-2022.
-//
-
 #ifndef PROJECT_TRADESTRATEGY_HPP
 #define PROJECT_TRADESTRATEGY_HPP
 
@@ -60,8 +56,14 @@ namespace ticker_strategies {
         static constexpr int OVERBOUGHT_BOUNDARY = 80;
         static constexpr int OVERSOLD_BOUNDARY = 20;
 
-        explicit tradestrategy(std::string name, double money) : strategy_name{name}, initial_money{money},
+        explicit tradestrategy(std::string &&name, double money) : strategy_name{name}, initial_money{money},
                                                                  current_money{money} {};
+
+        void reset(){
+            current_money = initial_money;
+            stock_amount = 0, purchases = 0, sales = 0;
+            trades.clear();
+        }
 
         virtual void run_strategy(const vector_t &oscillators,
                                   const std::vector<ticker_essentials::candlestick> &candles) = 0;

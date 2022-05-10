@@ -1,7 +1,3 @@
-//
-// Created by andre on 06-05-2022.
-//
-
 #ifndef PROJECT_TICKER_HPP
 #define PROJECT_TICKER_HPP
 
@@ -139,7 +135,7 @@ namespace ticker_essentials {
             return std::make_tuple(blueCurve, redCurve);
         }
 
-        std::vector<candlestick> get_candlesticks(const candle_intervals &&interval) const {
+        [[nodiscard]] std::vector<candlestick> get_candlesticks(const candle_intervals &&interval) const {
             switch (interval) {
                 case candle_intervals::hour: {
                     return find_candlesticks([](const std::tm &t1, const std::tm &t2) {

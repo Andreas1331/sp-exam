@@ -2,7 +2,7 @@
 #include <iostream>
 
 /** I/O functions are slow, so they can be on its own translation unit */
-std::ostream& benchmark::print(std::ostream &os) const
+std::ostream& ticker_benchmark::benchmark::print(std::ostream &os) const
 {
     using std::chrono::duration;
     os << "Mean,PlusMinus,Benchmark\n";

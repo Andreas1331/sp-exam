@@ -8,16 +8,17 @@
 #include "holdingstrategy.hpp"
 #include "benchmark.hpp"
 
+using namespace ticker_strategies;
+using namespace ticker_essentials;
+using namespace ticker_benchmark;
+
+constexpr double STARTING_MONEY = 10000;
+constexpr double BENCHMARK_TIMES = 100;
+
 /** A select few of the JSON files for testing, path may change depending on from where execution takes place */
 const std::string DANSKE_BANK{"../DANSKE.json"};
 const std::string CARL_B{"../CARLB.json"};
 const std::string NOVOZYMES{"../NZYMB.json"};
-
-using namespace ticker_strategies;
-using namespace ticker_essentials;
-
-constexpr int STARTING_MONEY = 10000;
-constexpr int BENCHMARK_TIMES = 100;
 
 ticker load_ticker(const std::string &path){
     /** Assignment 1 & 2) */
@@ -39,11 +40,9 @@ void analyze_ticker(const ticker &t){
     /** Assignment 3) The predicate will allow for control over the desired period that makes up the candlesticks.
      * The predicate below will aggregate all matching days into a set of candlesticks. */
     const auto candles = t.get_candlesticks(ticker::candle_intervals::day);
-    /*
     for (const auto& stick: candles) {
         stick.print(std::cout);
     }
-     */
     /** Assignment 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
@@ -58,12 +57,15 @@ void analyze_ticker(const ticker &t){
     /** Execute the strategy and measure the time it took */
     for(int i = 0; i < BENCHMARK_TIMES; i++){
         assign_strat.run_strategy(indicators, candles);
+        assign_strat.reset();
         bm.measure(id);
     }
     bm.print(std::cout);
+
+    /** Run the strategies for assignment 5 */
+    assign_strat.run_strategy(indicators, candles);
     assign_strat.print_result(std::cout);
 
-    /** Run the holding strategy */
     hold_strat.run_strategy(indicators, candles);
     hold_strat.print_result(std::cout);
 }

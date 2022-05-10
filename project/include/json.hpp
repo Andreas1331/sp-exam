@@ -1,7 +1,3 @@
-//
-// Created by andre on 06-05-2022.
-//
-
 #ifndef PROJECT_JSON_HPP
 #define PROJECT_JSON_HPP
 

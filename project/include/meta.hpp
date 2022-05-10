@@ -1,7 +1,3 @@
-//
-// Created by andre on 06-05-2022.
-//
-
 #ifndef PROJECT_META_HPP
 #define PROJECT_META_HPP
 
