@@ -10,9 +10,11 @@ include_directories(src)
 
 add_library(doctest OBJECT src/doctest.cpp)
 
+
 add_executable(unittests src/unittests.cpp include/candlestick.hpp src/candlestick.cpp)
 target_link_libraries(unittests PRIVATE doctest)
 
 add_test(NAME unit_tests COMMAND unittests)
+add_test(NAME plot_tests COMMAND python ${CMAKE_SOURCE_DIR}/py/plotter.py)
 
 enable_testing()
