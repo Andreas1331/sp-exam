@@ -13,8 +13,8 @@ namespace ticker_benchmark{
     {
         const std::string name;
         size_t count{0};
-        double sum{0}; // the sum of timings
-        double sumsq{0}; // the sum of squared timings
+        double sum{0};
+        double sumsq{0};
         void add(double time) {
             ++count;
             sum += time;
@@ -29,7 +29,7 @@ namespace ticker_benchmark{
 
     class benchmark
     {
-        // These are just private fields
+    private:
         using clk = std::chrono::high_resolution_clock;
         using time_point = clk::time_point;
         time_point last;
@@ -37,12 +37,12 @@ namespace ticker_benchmark{
     public:
         /** Creates a benchmark with pre-allocated number of events */
         benchmark(size_t measure_count = 10) {
-            measurements.reserve(measure_count); // preallocate so no time is wasted for allocations
+            measurements.reserve(measure_count);
         }
         void reset() { last = clk::now(); }
         /** registers a new benchmark */
         size_t add(const std::string &name) {
-            auto res = measurements.size(); // This will return the index of the new element
+            auto res = measurements.size();
             measurements.push_back({name});
             reset();
             return res;

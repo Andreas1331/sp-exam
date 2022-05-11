@@ -5,7 +5,9 @@
 #include "assignmentstrategy.hpp"
 #include "meta.hpp"
 #include "candlestick.hpp"
+#include "ticker.hpp"
 
+/** Just a test function to check if provided type is a tm or not */
 template<typename T>
 bool is_tm_wrapper(T obj){
     return is_tm_v<T>;
@@ -29,6 +31,14 @@ TEST_CASE("strategy"){
     }
 }
 
+TEST_CASE("tools"){
+    std::vector<int> numbers {1,2,3,4,5,6,7,8};
+    const auto first_five_avg = ticker_tools::get_average(numbers, 5, 0, 5, 0);
+    const auto last_three_avg = ticker_tools::get_average(numbers, 3, 5, 8, 0);
+    CHECK(first_five_avg == 3);
+    CHECK(last_three_avg == 7);
+}
+
 TEST_CASE("candlestick"){
     /** Create a few tradestamps for testing */
     std::vector<ticker_essentials::trade_stamp> trades {};
@@ -44,4 +54,5 @@ TEST_CASE("candlestick"){
     CHECK(candle.highest == 102);
     CHECK(candle.lowest == 99);
 }
+
 #endif //PROJECT_UNITTESTS_CPP

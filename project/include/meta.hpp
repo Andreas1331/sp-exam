@@ -22,9 +22,9 @@ using get_iterator = decltype(std::begin(std::declval<C&>()));
 
 template <typename C, typename = void>
 struct is_container : std::false_type
-{};  // primary declaration to fall back to
+{};
 
-template <typename C>  // specialization for the iterable types
+template <typename C>
 struct is_container<C, std::void_t<get_iterator<C>>> : std::true_type
 {};
 
@@ -48,17 +48,17 @@ template <typename S, typename = void>
 struct is_string : std::false_type
 {};
 
-template <typename S>  // container of characters
+template <typename S>
 struct is_string<S, std::void_t<get_iterator<S>>>
         : std::conditional_t<is_character_v<typename std::iterator_traits<get_iterator<S>>::value_type>, std::true_type,
                 std::false_type>
 {};
 
-template <>  // c-string
+template <>
 struct is_string<char*, void> : std::true_type
 {};
 
-template <>  // const c-string
+template <>
 struct is_string<const char*, void> : std::true_type
 {};
 
@@ -102,14 +102,9 @@ struct accepts_writer<Data, Writer, std::void_t<decltype(std::declval<Data&>().a
 template <typename Data, typename Writer>
 constexpr auto accepts_writer_v = accepts_writer<Data, Writer>::value;
 
-/** type-displayer for compile-time type debugging */
 template <typename T>
-struct TD;  // intentionally has no implementation to reveal the type in the error message
+struct TD;
 
-/** dependent_false is used for static_asserts inside constexpr-if else-branch.
- * The design is very similar to TD, except it has bool value.
- * See: https://devblogs.microsoft.com/oldnewthing/20200311-00/?p=103553
- * Also: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1830r1.pdf */
 template <typename... Args>
 constexpr auto dependent_false = false;
 

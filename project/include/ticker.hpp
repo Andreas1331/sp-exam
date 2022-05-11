@@ -13,29 +13,32 @@
 #include "candlestick.hpp"
 #include "tradestamp.hpp"
 
-/** Will invoke the action for each index and provide the start index of the desired window size as well */
-template<typename T1, typename T2>
-void slide_window(const std::vector<T1> &in, const T2 action, const int &window_size) {
-    int start_index, index_before_i;
-    for (int i = 0; i < in.size(); i++) {
-        start_index = (i - window_size);
-        start_index = (start_index < 0) ? 0
-                                        : start_index; /** Make sure we do not use negative indices */
-        index_before_i = i - 1;
-        index_before_i = (index_before_i < 0) ? 0 : index_before_i;
+namespace ticker_tools {
+    /** Will invoke the action for each index and provide the start index of the desired window size as well */
+    template<typename T1, typename T2>
+    void slide_window(const std::vector<T1> &in, const T2 action, const int &window_size) {
+        int start_index, index_before_i;
+        for (int i = 0; i < in.size(); i++) {
+            start_index = (i - window_size);
+            start_index = (start_index < 0) ? 0
+                                            : start_index; /** Make sure we do not use negative indices */
+            index_before_i = i - 1;
+            index_before_i = (index_before_i < 0) ? 0 : index_before_i;
 
-        action(start_index, index_before_i, i);
-    }
-}
-
-template<typename T>
-T get_average(std::vector<T> const &v, const int &total_elements, const int &start_offset, const int &end_offset,
-              const T &&default_val) {
-    if (v.empty()) {
-        return default_val;
+            action(start_index, index_before_i, i);
+        }
     }
 
-    return std::reduce(v.begin() + start_offset, v.begin() + end_offset, default_val) / total_elements;
+    /** start_offset incl and end_offset excl */
+    template<typename T>
+    T get_average(std::vector<T> const &v, const int &total_elements, const int &start_offset, const int &end_offset,
+                  const T &&default_val) {
+        if (v.empty()) {
+            return default_val;
+        }
+
+        return std::reduce(v.begin() + start_offset, v.begin() + end_offset, default_val) / total_elements;
+    }
 }
 
 namespace ticker_essentials {
@@ -103,7 +106,7 @@ namespace ticker_essentials {
             std::vector<double> redCurve(candlesticks.size());
 
             /** Calculate the fast-moving oscillator */
-            slide_window(candlesticks,
+            ticker_tools::slide_window(candlesticks,
                          [&blueCurve, &candlesticks](const auto start, const auto index_before_i, const auto index) {
                              const double L = {
                                      std::min_element(candlesticks.begin() + start, candlesticks.begin() + index,
@@ -121,14 +124,14 @@ namespace ticker_essentials {
                              double K = ((C - L) / (H - L) * 100);
 
                              K = std::isnan(K) ? 0
-                                               : K; // As the data provided in the assignment is dirty, values will sometimes become NaN
+                                               : K; /** As the data provided in the assignment is dirty, values will sometimes become NaN */
                              blueCurve[index] = {K};
                          }, trading_period_X);
             /** Calculate the slow-moving oscillator */
-            slide_window(blueCurve,
+            ticker_tools::slide_window(blueCurve,
                          [&redCurve, &blueCurve, &number_of_periods_Y](const auto start, const auto index_before_i,
                                                                        const auto index) {
-                             double D = get_average(blueCurve, number_of_periods_Y, start, index, 0.0);
+                             double D = ticker_tools::get_average(blueCurve, number_of_periods_Y, start, index, 0.0);
                              redCurve[index] = {D};
                          }, number_of_periods_Y);
 

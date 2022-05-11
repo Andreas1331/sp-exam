@@ -54,8 +54,8 @@ void analyze_ticker(const ticker &t){
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
     /** I save some of the data to be loaded in Python later for plotting */
-    save_data_to_json("candle_data.JSON",candles);
-    save_data_to_json("indicators.JSON",indicators);
+    //save_data_to_json("candle_data.JSON",candles);
+    //save_data_to_json("indicators.JSON",indicators);
 
     /** Assignment 5) assignment_strategy tried to follow the description provided in the exam and holding_strategy
      * is a classic attempt at not selling. */

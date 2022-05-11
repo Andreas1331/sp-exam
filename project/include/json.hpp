@@ -2,7 +2,7 @@
 #define PROJECT_JSON_HPP
 
 #include <iostream>
-#include <iomanip>  // quoted
+#include <iomanip>
 #include "meta.hpp"
 
 template <typename T>
@@ -12,12 +12,12 @@ struct json_t
 };
 
 template <typename T>
-json_t(T&&) -> json_t<T>;  // Class Template Argument Deduction guide
+json_t(T&&) -> json_t<T>;
 
 struct json_reader_t
 {
     std::ostream& os;
-    bool first = true;  // first field is being visited
+    bool first = true;
     template <typename Data>
     void operator()(const std::string& name, const Data& value)
     {
@@ -31,7 +31,6 @@ struct json_reader_t
     template <typename Tuple, std::size_t... Is>
     void print_tuple(const Tuple& tuple, std::index_sequence<Is...>)
     {
-        // parameter pack fold over the comma operator:
         (..., operator()(std::to_string(Is + 1), std::get<Is>(tuple)));
     }
     /** support for tuples: */
@@ -106,15 +105,14 @@ template <typename T>
 std::ostream& operator<<(std::ostream& os, const json_t<T>& json)
 {
     if constexpr (is_bool_v<T>) {
-        auto flags = os.flags();  // save formatting flags
+        auto flags = os.flags();
         os << std::boolalpha << json.data;
-        os.setf(flags);  // recover the old flags
+        os.setf(flags);
     } else if constexpr (is_number_v<T>)
         os << json.data;
     else if constexpr (is_string_v<T>)
         os << std::quoted(json.data);
     else if constexpr(is_tm_v<T>){
-        // Just create a shared const variable for everyone containing the format (other formats not supported)
         os << '\"' << std::put_time(&json.data, "%Y-%m-%dT%H:%M:%S") << '\"';
     }
     else if constexpr (is_container_v<T>) {
@@ -145,16 +143,16 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
 {
     using namespace std::literals::string_literals;
     if constexpr (is_bool_v<T>) {
-        auto flags = is.flags();  // save formatting flags
+        auto flags = is.flags();
         is >> std::boolalpha >> json.data;
-        is.setf(flags);  // restore the old flags
+        is.setf(flags);
     } else if constexpr (is_number_v<T>)
         is >> json.data;
     else if constexpr (is_string_v<T>){
         is >> std::quoted(json.data);
     }
     else if constexpr(is_tm_v<T>){
-        // Just create a shared const variable for everyone containing the format (other formats not supported)
+        /** Just create a shared const variable for everyone containing the format (other formats not supported) */
         static const std::string dateTimeFormat{ "%Y-%m-%dT%H:%M:%SZ" };
         std::string t {};
         is >> std::quoted(t);
@@ -162,8 +160,6 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
         ss >> std::get_time(&json.data, dateTimeFormat.c_str());
     }
     else if constexpr (is_container_v<T>) {
-        // here support only STD containers, as arrays cannot change size
-        // alternatively one may implement filling of the pre-allocated container
         using E = typename std::remove_reference_t<T>::value_type;
         expect(is, '[');
         auto first = true;
@@ -198,7 +194,7 @@ std::istream& operator>>(std::istream& is, json_t<T>& json)
     return is;
 }
 
-template <typename T>  // binds to r-value references and calls >> on the l-value reference
+template <typename T>
 std::istream& operator>>(std::istream& is, json_t<T>&& json)
 {
     return is >> json;
