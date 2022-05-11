@@ -43,14 +43,16 @@ void save_data_to_json(const std::string &file_name, T1 data){
 }
 
 void analyze_ticker(const ticker &t){
-    /** Assignment 3) The predicate will allow for control over the desired period that makes up the candlesticks.
-     * The predicate below will aggregate all matching days into a set of candlesticks. */
+    /** Assignment 3) The parameter will allow for control over the desired period that makes up the candlesticks.
+     * The chosen parameter is 1-day as this is the most typical depending on what
+     * kind of trader we're talking about. */
     const auto candles = t.get_candlesticks(ticker::candle_intervals::day);
     for (const auto& stick: candles) {
         stick.print(std::cout);
     }
 
-    /** Assignment 4) The ticker class can provide multiple different kinds of candlesticks for the stochastic indicators */
+    /** Assignment 4) The ticker class can take different kinds of candlesticks for the stochastic indicators
+     * with varying trading periods used. */
     const auto indicators = t.get_stochastic_indicators(candles, 14, 3);
 
     /** I save some of the data to be loaded in Python later for plotting */
