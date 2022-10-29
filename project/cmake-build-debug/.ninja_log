@@ -1,9 +1,0 @@
-# ninja log v5
-3	2512	6738768064541726	CMakeFiles/project.dir/main.cpp.obj	2c83ebd916b0dd03
-2513	3200	6738768071458034	project.exe	cfee40c1772b4a43
-12	990	6738745055905051	CMakeFiles/project.dir/src/candlestick.cpp.obj	a285ed6bb96951ed
-1	4331	6737903965846861	CMakeFiles/doctest.dir/src/doctest.cpp.obj	f7522cee9a3ef953
-4	757	6737933241916542	CMakeFiles/unittests.dir/src/candlestick.cpp.obj	e228fecce8faafe8
-848	1628	6737933386453301	unittests.exe	af32e6b2013bc6a4
-4	846	6737933378641227	CMakeFiles/unittests.dir/src/unittests.cpp.obj	3d38d25aad274b18
-11	867	6738759877444422	CMakeFiles/project.dir/src/benchmark.cpp.obj	4e9a4a24781e1bd1
