@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Andreas1331/sp_exam">
-    <img src="output/candlesticks_plot.png" alt="Logo" width="384" height="191">
+    <img src="output/candlesticks_plot.png" alt="Logo" width="576" height="286">
   </a>
 
 <h3 align="center">Stock Trading Library</h3>
@@ -57,7 +57,7 @@ sp_exam/output/...
 ## Getting Started
 
 To get started simply let your preferred IDE load the CMake, and make sure to have C++ 20.
-Also remember to install Python and the required pip packages for plotting. There is no requirement.txt file, so check the ```plotter.py`` for more information.
+Also remember to install Python and the required pip packages for plotting. There is no requirement.txt file, so check the ``plotter.py`` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
