@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Andreas1331/sp_exam">
-    <img src="images/candlesticks_plot.png" alt="Logo" width="384" height="191">
+    <img src="output/candlesticks_plot.png" alt="Logo" width="384" height="191">
   </a>
 
 <h3 align="center">Stock Trading Library</h3>
