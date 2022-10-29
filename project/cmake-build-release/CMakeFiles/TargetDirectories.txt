@@ -1,6 +1,0 @@
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/project.dir
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/rebuild_cache.dir
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/test.dir
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/doctest.dir
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Users/andre/Documents/GitHub/sp_exam/project/cmake-build-release/CMakeFiles/unittests.dir
