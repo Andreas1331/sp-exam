@@ -44,6 +44,10 @@ It is not useful in any real-life application besides getting familiar with C++.
 ```
 sp_exam/assignment/description.pdf
 ```
+and output files of the program can be found inside
+```
+sp_exam/output/...
+```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
