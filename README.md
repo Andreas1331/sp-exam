@@ -40,7 +40,11 @@ The project is my solution to an exam assigment consisting of ten smaller assign
 
 The plotting is done using Python by adding a command using CMake that will start the ``plotter.py``. All unit testing is done using ``doctest``, and the file ``json.hpp`` is not originally mine but provided for the exam. However, it was modified to fit the project intentions.
 
-It is not useful in any real-life application besides getting familiar with C++. The output files of the program can be found inside
+It is not useful in any real-life application besides getting familiar with C++. The exam assignment can be found inside 
+```
+sp_exam/assignment/description.pdf
+```
+and output files of the program can be found inside
 ```
 sp_exam/output/...
 ```
